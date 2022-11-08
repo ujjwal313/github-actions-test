@@ -1,6 +1,18 @@
 name: Actions Workflow
 
-on: [push]
+on:
+  schedule:
+    - cron: "0/5 * * * *"
+
+
+    # cron jobs : 
+    #     * * * * *
+    #     min hour day(month) month day(week)
+    #     checkout crontab.guru for reference
+          # we can add multiple cron
+
+  pull_request:
+    types: [closed, assigned, opened, reopened]
 
 jobs:
     run-github-actions:
