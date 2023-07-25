@@ -1,8 +1,6 @@
 name: Shell Commands
 
-on: 
-  pull_request:
-    types: [closed, assigned, opened, reopened]
+on: push
 
 jobs:
   run-shell-command:
@@ -20,14 +18,24 @@ jobs:
           print (platform.processor())
         shell: python
 
+  check-env:
+    runs-on: ubuntu-latest
+    env:
+      AZURE_HOST: 20.127.223.29
+      USER: azure-hcp-be-prod
+      DEPLOY_FOLDER: hcp-fe-production
+    steps:
+      - name: Print User
+        run: echo "$USER"
+      - name: Print IP
+        run: echo ${{env.USER}}
+
   run-windows-command:
     runs-on: windows-latest
-    needs: ['run-shell-command']
+    needs: ["run-shell-command"]
     steps:
       - name: Directory Powershell
         run: Get-Location
       - name: Directory Bash
         run: pwd
         shell: bash
-
-
