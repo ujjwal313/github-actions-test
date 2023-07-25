@@ -28,7 +28,7 @@ jobs:
       - name: Print User
         run: echo "$USER"
       - name: Print IP
-        run: echo ${{env.USER}}
+        run: echo ${{env.AZURE_HOST}}
 
   run-windows-command:
     runs-on: windows-latest
